@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gas Station Nearby — Find cheap gas near you — fuel cost calculators and guides</title>
+<meta name="description" content="Gas Station Nearby: Find cheap gas near you — fuel cost calculators and guides. Free fuel cost calculators, fuel grade reference tables, and driver guides.">
+<meta name="theme-color" content="#14532d">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+:root{--dark:#14532d;--dark2:#166534;--dark3:#1b7a43;--accent:#ea580c;--accent-dark:#c2410c;--bg:#f2f7f3;--card:#fff;--text:#14261a;--muted:#5b6b60;--border:#d7e2d9;--result-bg:#fff7ed;--row-alt:#f6faf6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent-dark)}
+header{background:var(--dark);color:#fff;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.header-in{display:flex;align-items:center;gap:14px;padding:13px 16px;max-width:1080px;margin:0 auto;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;flex:1;min-width:200px}
+.brand .mark{width:38px;height:38px;border-radius:9px;background:var(--accent);color:var(--dark);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:19px;flex:none}
+.brand b{font-size:19px;letter-spacing:.2px}
+.brand b span{color:var(--accent)}
+.brand small{display:block;font-size:11.5px;color:#cbd5c1;font-weight:400}
+nav.main-nav{display:flex;gap:4px;flex-wrap:wrap}
+nav.main-nav a{color:#dbe7db;text-decoration:none;font-size:14px;font-weight:600;padding:8px 11px;border-radius:8px}
+nav.main-nav a:hover{background:var(--dark2);color:#fff}
+.hero{background:linear-gradient(135deg,var(--dark) 0%,var(--dark2) 60%,var(--dark3) 100%);color:#fff;padding:44px 0 40px}
+.hero h1{font-size:clamp(26px,5vw,40px);line-height:1.2;max-width:760px}
+.hero h1 span{color:var(--accent)}
+.hero p{color:#d7e3d7;font-size:16px;max-width:720px;margin-top:12px}
+.hero .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.hero .badge{background:rgba(255,255,255,.08);border:1px solid var(--accent);color:#ffe9c9;font-size:13px;font-weight:600;border-radius:999px;padding:6px 13px}
+section{padding:34px 0 8px}
+section h2{font-size:24px;margin-bottom:6px}
+.section-sub{color:var(--muted);font-size:15px;max-width:760px;margin-bottom:20px}
+.calc-grid{display:grid;grid-template-columns:1fr;gap:18px}
+@media(min-width:860px){.calc-grid{grid-template-columns:1fr 1fr}.calc-grid .wide{grid-column:1 / -1}}
+.card{background:var(--card);border-radius:14px;box-shadow:0 1px 3px rgba(0,0,0,.08),0 4px 14px rgba(0,0,0,.06);padding:22px 20px;border-top:4px solid var(--accent)}
+.card h3{font-size:18px;margin-bottom:2px}
+.card .tag{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-dark)}
+.card .desc{font-size:14px;color:var(--muted);margin:6px 0 16px}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:13.5px;font-weight:600;margin-bottom:6px}
+.field label small{font-weight:400;color:var(--muted)}
+.field input,.field select{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:10px;font-size:15px;font-family:inherit;outline:none;background:#fff;color:var(--text)}
+.field input:focus,.field select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,0,0,.08)}
+.btn{display:inline-block;background:var(--accent);color:#fff;border:none;border-radius:10px;padding:12px 20px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit}
+.btn:hover{filter:brightness(1.08)}
+.result{margin-top:16px;background:var(--result-bg);border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:none}
+.result.show{display:block}
+.result .big{font-size:26px;font-weight:800;color:var(--dark)}
+.result p{font-size:14.5px;margin-top:4px}
+.result .note{font-size:13px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;font-size:14.5px;margin:14px 0}
+th,td{border:1px solid var(--border);padding:10px 12px;text-align:left;vertical-align:top}
+th{background:var(--dark);color:#fff}
+tr:nth-child(even) td{background:var(--row-alt)}
+.guide-grid{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:760px){.guide-grid{grid-template-columns:1fr 1fr 1fr}}
+.guide-card{background:var(--card);border-radius:14px;box-shadow:0 1px 3px rgba(0,0,0,.08),0 4px 14px rgba(0,0,0,.06);padding:20px;display:flex;flex-direction:column}
+.guide-card h3{font-size:17px;margin-bottom:8px}
+.guide-card p{font-size:14px;color:var(--muted);flex:1}
+.guide-card a{margin-top:12px;font-weight:700;text-decoration:none}
+.faq-item{background:var(--card);border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.06);padding:16px 18px;margin-bottom:12px}
+.faq-item h3{font-size:16px;margin-bottom:6px}
+.faq-item p{font-size:14.5px;color:var(--muted)}
+footer{background:var(--dark);color:#cbd5c1;margin-top:44px;padding:34px 0 26px;font-size:14px}
+footer h3{color:#fff;font-size:16px;margin-bottom:8px}
+footer p{margin-bottom:10px;max-width:820px}
+footer a{color:var(--accent)}
+.article{max-width:860px}
+.article h1{font-size:clamp(26px,4vw,34px);line-height:1.25;margin:26px 0 10px}
+.article .lede{font-size:17px;color:var(--muted);margin-bottom:18px}
+.article h2{font-size:22px;margin:26px 0 8px}
+.article h3{font-size:18px;margin:20px 0 6px}
+.article p{margin-bottom:12px}
+.article ul,.article ol{margin:0 0 14px 22px}
+.article li{margin-bottom:6px}
+.back{margin:22px 0 0;display:inline-block;font-weight:700;text-decoration:none}
+@media(max-width:640px){.brand small{display:none}.hero{padding:30px 0}}
+
+</style>
+</head>
+<body>
+<header><div class="header-in">
+<a class="brand" href=""><span class="mark">⛽</span><span><b>Gas Station <span>Nearby</span></b><small>Find cheap gas near you — fuel cost calculators and guides</small></span></a>
+<nav class="main-nav"><a href="#calculators">Calculators</a><a href="#fuel-table">Fuel Grades</a><a href="#guides">Guides</a><a href="#faq">FAQ</a></nav>
+</div></header>
+<section class="hero"><div class="wrap">
+<h1>Find cheap gas near you — <span>and know exactly what a trip will cost</span></h1>
+<p>Free fuel cost calculators, honest price guides, and practical tips for drivers. No sign-up, no app download — everything runs in your browser.</p>
+<div class="badges"><span class="badge">5 free calculators</span><span class="badge">US fuel grades & prices</span><span class="badge">No sign-up needed</span></div>
+</div></section>
+<main class="wrap">
+<section id="calculators">
+<h2>Fuel cost calculators</h2>
+<p class="section-sub">Enter your numbers and get an instant estimate. All calculations happen on your device.</p>
+<div class="calc-grid">
+<div class="card"><div class="tag">Calculator 1</div><h3>Fuel Cost Calculator</h3><p class="desc">How much will a drive cost in fuel?</p>
+<div class="field"><label for="c1d">Distance (miles)</label><input type="number" id="c1d" placeholder="e.g. 120" value="120" step="any" min="0"></div><div class="field"><label for="c1m">Your car's MPG</label><input type="number" id="c1m" placeholder="e.g. 30" value="30" step="any" min="0"></div><div class="field"><label for="c1p">Gas price ($ per gallon)</label><input type="number" id="c1p" placeholder="e.g. 3.20" value="3.20" step="0.01" min="0"></div>
+<button class="btn" onclick="run1()">Calculate</button>
+<div class="result" id="r1"></div></div>
+<div class="card"><div class="tag">Calculator 2</div><h3>Trip Fuel Planner</h3><p class="desc">Plan fuel and stops for a longer trip.</p>
+<div class="field"><label for="c2d">Total trip distance (miles)</label><input type="number" id="c2d" placeholder="e.g. 850" value="850" step="any" min="0"></div><div class="field"><label for="c2m">Your car's MPG</label><input type="number" id="c2m" placeholder="e.g. 30" value="30" step="any" min="0"></div><div class="field"><label for="c2p">Gas price ($ per gallon)</label><input type="number" id="c2p" placeholder="e.g. 3.20" value="3.20" step="0.01" min="0"></div><div class="field"><label for="c2t">Tank size (gallons)</label><input type="number" id="c2t" placeholder="e.g. 15" value="15" step="any" min="0"></div>
+<button class="btn" onclick="run2()">Calculate</button>
+<div class="result" id="r2"></div></div>
+<div class="card"><div class="tag">Calculator 3</div><h3>MPG Tracker</h3><p class="desc">Work out your real MPG from a fill-up.</p>
+<div class="field"><label for="c3mi">Miles driven since last fill-up</label><input type="number" id="c3mi" placeholder="e.g. 320" value="320" step="any" min="0"></div><div class="field"><label for="c3g">Gallons used</label><input type="number" id="c3g" placeholder="e.g. 10.5" value="10.5" step="0.1" min="0"></div><div class="field"><label for="c3p">Price paid ($ per gallon)</label><input type="number" id="c3p" placeholder="e.g. 3.20" value="3.20" step="0.01" min="0"></div>
+<button class="btn" onclick="run3()">Calculate</button>
+<div class="result" id="r3"></div></div>
+<div class="card"><div class="tag">Calculator 4</div><h3>EV vs Gas Cost Comparison</h3><p class="desc">Compare monthly fuel costs: electric vs gasoline.</p>
+<div class="field"><label for="c4mi">Miles driven per month</label><input type="number" id="c4mi" placeholder="e.g. 1000" value="1000" step="any" min="0"></div><div class="field"><label for="c4m">Gas car MPG</label><input type="number" id="c4m" placeholder="e.g. 30" value="30" step="any" min="0"></div><div class="field"><label for="c4g">Gas price ($ per gallon)</label><input type="number" id="c4g" placeholder="e.g. 3.20" value="3.20" step="0.01" min="0"></div><div class="field"><label for="c4e">EV efficiency (miles per kWh)</label><input type="number" id="c4e" placeholder="e.g. 3.5" value="3.5" step="0.1" min="0"></div><div class="field"><label for="c4p">Electricity price ($ per kWh)</label><input type="number" id="c4p" placeholder="e.g. 0.16" value="0.16" step="0.01" min="0"></div>
+<button class="btn" onclick="run4()">Calculate</button>
+<div class="result" id="r4"></div></div>
+<div class="card"><div class="tag">Calculator 5</div><h3>Premium vs Regular Savings</h3><p class="desc">See what premium gas really costs you each year.</p>
+<div class="field"><label for="c5r">Regular price ($ per gallon)</label><input type="number" id="c5r" placeholder="e.g. 3.20" value="3.20" step="0.01" min="0"></div><div class="field"><label for="c5p">Premium price ($ per gallon)</label><input type="number" id="c5p" placeholder="e.g. 3.90" value="3.90" step="0.01" min="0"></div><div class="field"><label for="c5t">Tank size (gallons)</label><input type="number" id="c5t" placeholder="e.g. 15" value="15" step="any" min="0"></div><div class="field"><label for="c5f">Fill-ups per month</label><input type="number" id="c5f" placeholder="e.g. 4" value="4" step="any" min="0"></div>
+<button class="btn" onclick="run5()">Calculate</button>
+<div class="result" id="r5"></div></div>
+</div></section>
+<section id="fuel-table">
+<h2>US fuel grades &amp; average prices</h2>
+<p class="section-sub">Reference table — prices are approximate national and regional averages and change daily. Check the pump price before you fill up.</p>
+<table>
+<tr><th>Fuel grade</th><th>Octane (AKI)</th><th>Typical use</th><th>Approx. average price*</th></tr>
+<tr><td>Regular gasoline</td><td>87</td><td>Most cars, trucks, and SUVs</td><td>$3.20 / gal</td></tr>
+<tr><td>Midgrade gasoline</td><td>89</td><td>Some cars that recommend higher octane</td><td>$3.55 / gal</td></tr>
+<tr><td>Premium gasoline</td><td>91–93</td><td>High-performance and turbo engines</td><td>$3.90 / gal</td></tr>
+<tr><td>Diesel</td><td>— (cetane ~40–52)</td><td>Diesel cars, trucks, and commercial vehicles</td><td>$3.65 / gal</td></tr>
+</table>
+<table>
+<tr><th>Region</th><th>Regular (approx.)</th><th>Premium (approx.)</th><th>Diesel (approx.)</th></tr>
+<tr><td>Northeast</td><td>$3.45</td><td>$4.15</td><td>$3.90</td></tr>
+<tr><td>Midwest</td><td>$3.15</td><td>$3.85</td><td>$3.60</td></tr>
+<tr><td>South</td><td>$3.05</td><td>$3.75</td><td>$3.50</td></tr>
+<tr><td>West</td><td>$4.10</td><td>$4.75</td><td>$4.30</td></tr>
+</table>
+<p style="font-size:13px;color:var(--muted)">*Estimates only — national and regional averages move daily. The West is usually the most expensive region because of higher taxes and stricter fuel blends.</p>
+</section>
+<section id="guides">
+<h2>Guides for drivers</h2>
+<p class="section-sub">Practical, plain-English advice on fuel, stations, and saving money on the road.</p>
+<div class="guide-grid">
+<div class="guide-card"><h3>How to Find the Cheapest Gas Near You</h3><p>Simple, proven ways to pay less at the pump — every single fill-up.</p><a href="guides/cheapest-gas-near-you.html">Read the guide &rarr;</a></div>
+<div class="guide-card"><h3>Gas Station Amenities Explained</h3><p>EV charging, diesel, car wash, air, and more — what each station feature is actually for.</p><a href="guides/gas-station-amenities.html">Read the guide &rarr;</a></div>
+<div class="guide-card"><h3>10 Ways to Save Money on Gas</h3><p>Ten practical habits that cut your fuel bill — no gimmicks, no products to buy.</p><a href="guides/save-money-on-gas.html">Read the guide &rarr;</a></div>
+<div class="guide-card"><h3>Diesel vs Gasoline — What to Know</h3><p>How diesel and gasoline engines differ, what each fuel costs, and which one suits you.</p><a href="guides/diesel-vs-gasoline.html">Read the guide &rarr;</a></div>
+<div class="guide-card"><h3>EV Charging at Gas Stations: What to Expect</h3><p>How fast charging works, what it costs, and how to plan an electric road trip.</p><a href="guides/ev-charging-at-gas-stations.html">Read the guide &rarr;</a></div>
+<div class="guide-card"><h3>Gas Station Safety Tips for Night Stops</h3><p>Stay safe when you fill up after dark — simple habits that make a real difference.</p><a href="guides/gas-station-safety-night.html">Read the guide &rarr;</a></div>
+</div></section>
+<section id="faq">
+<h2>Frequently asked questions</h2>
+<div class="faq-item"><h3>Why do gas prices vary so much between stations?</h3><p>Taxes, rent, wholesale costs, and competition all play a role. Stations near highways and in expensive neighborhoods usually charge more, while stations with heavy local competition tend to price lower. A station a few blocks away can easily be 20–40 cents cheaper per gallon.</p></div>
+<div class="faq-item"><h3>Is premium gas worth the extra money?</h3><p>Only if your car actually requires it. Most cars are designed for regular 87-octane fuel, and using premium in them gives no benefit. Check your owner&#x27;s manual: if it says &#x27;premium required&#x27;, use it; if it says &#x27;premium recommended&#x27;, regular is usually fine, with only a small performance difference.</p></div>
+<div class="faq-item"><h3>How accurate are these calculators?</h3><p>They are as accurate as the numbers you enter. Use your real average MPG (from your dashboard or a fuel log) and the current pump price for the best estimate. Real-world fuel use varies with traffic, weather, air conditioning, and driving style.</p></div>
+<div class="faq-item"><h3>Does this site track my location or data?</h3><p>No. The calculators run entirely in your browser and nothing you type is sent anywhere. We do not ask for your location — use any map or price app you like to find stations near you.</p></div>
+</section></main>
+<footer><div class="wrap">
+<h3>About Gas Station Nearby</h3>
+<p>Gas Station Nearby is an independent, free resource for drivers in the United States. We publish fuel cost calculators and plain-English guides to help you spend less at the pump. We are not affiliated with any fuel brand, gas station chain, or oil company, and we do not sell fuel or collect your data.</p>
+<h3>Disclaimer</h3>
+<p>Fuel prices shown on this site are estimates for reference only and change daily by location. Always check the posted price at the pump before filling up. Calculator results are estimates based on the numbers you enter; your real fuel use depends on your vehicle, driving style, traffic, and weather.</p>
+<p>Guides: <a href="guides/cheapest-gas-near-you.html">How to Find the Cheapest Gas Near You</a> &middot; <a href="guides/gas-station-amenities.html">Gas Station Amenities Explained</a> &middot; <a href="guides/save-money-on-gas.html">10 Ways to Save Money on Gas</a> &middot; <a href="guides/diesel-vs-gasoline.html">Diesel vs Gasoline — What to Know</a> &middot; <a href="guides/ev-charging-at-gas-stations.html">EV Charging at Gas Stations: What to Expect</a> &middot; <a href="guides/gas-station-safety-night.html">Gas Station Safety Tips for Night Stops</a></p>
+<p>&copy; 2026 Gas Station Nearby. All prices are estimates. Drive safe.</p>
+</div></footer>
+<script>
+
+function fuelCost(d, mpg, p){var g=d/mpg; return {gallons:g, cost:g*p};}
+function tripPlan(d, mpg, p, tank){var g=d/mpg; var stops=Math.max(0, Math.ceil(g/tank)-1); return {gallons:g, cost:g*p, stops:stops};}
+function mpgTrack(mi, gal, p){var m=mi/gal; return {mpg:m, cpm:p/m};}
+function evVsGas(mi, mpg, gp, eff, ep){var gas=(mi/mpg)*gp; var ev=(mi/eff)*ep; return {gas:gas, ev:ev, save:gas-ev};}
+function premVsReg(reg, prem, tank, fills){var extra=(prem-reg)*tank; return {perFill:extra, perMonth:extra*fills, perYear:extra*fills*12};}
+function $(id){return document.getElementById(id);}
+function show(id){$(id).classList.add('show');}
+function num(id){var v=parseFloat($(id).value); return isNaN(v)?0:v;}
+function money(x){return '$'+x.toFixed(2);}
+function run1(){var r=fuelCost(num('c1d'),num('c1m'),num('c1p')); $('r1').innerHTML='<div class="big">'+money(r.cost)+'</div><p>'+r.gallons.toFixed(2)+' gallons needed for this trip.</p><p class="note">At '+num('c1m').toFixed(1)+' MPG, every extra 10 miles costs about '+money(10/num('c1m')*num('c1p'))+'.</p>'; show('r1');}
+function run2(){var r=tripPlan(num('c2d'),num('c2m'),num('c2p'),num('c2t')); $('r2').innerHTML='<div class="big">'+money(r.cost)+'</div><p>'+r.gallons.toFixed(1)+' gallons total &middot; about '+r.stops+' fuel stop'+(r.stops==1?'':'s')+' with a '+num('c2t').toFixed(0)+'-gallon tank.</p>'; show('r2');}
+function run3(){var r=mpgTrack(num('c3mi'),num('c3g'),num('c3p')); $('r3').innerHTML='<div class="big">'+r.mpg.toFixed(1)+' MPG</div><p>Cost per mile: '+money(r.cpm)+' &middot; cost per 100 miles: '+money(r.cpm*100)+'.</p>'; show('r3');}
+function run4(){var r=evVsGas(num('c4mi'),num('c4m'),num('c4g'),num('c4e'),num('c4p')); var w=r.save>=0?'You would save about <b>'+money(r.save)+'</b> per month with the EV.':'The gas car would be about <b>'+money(-r.save)+'</b> per month cheaper on fuel.'; $('r4').innerHTML='<div class="big">'+money(r.ev)+' / mo (EV) vs '+money(r.gas)+' / mo (gas)</div><p>'+w+'</p><p class="note">EV running cost: '+money(r.ev/num('c4mi')*100)+' per 100 miles. Gas running cost: '+money(r.gas/num('c4mi')*100)+' per 100 miles.</p>'; show('r4');}
+function run5(){var r=premVsReg(num('c5r'),num('c5p'),num('c5t'),num('c5f')); $('r5').innerHTML='<div class="big">'+money(r.perYear)+' / year extra</div><p>Premium costs '+money(r.perFill)+' more per fill-up and about '+money(r.perMonth)+' more per month.</p><p class="note">Unless your car requires premium, that money buys nothing — regular 87 octane is fine for most cars.</p>'; show('r5');}
+
+</script>
+</body>
+</html>

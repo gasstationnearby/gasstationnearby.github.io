@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gasstationnearby.github.io/sitemap.xml
