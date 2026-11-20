@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Find the Cheapest Gas Near You — Gas Station Nearby</title>
+<meta name="description" content="Simple, proven ways to pay less at the pump — every single fill-up.">
+<meta name="theme-color" content="#14532d">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<style>
+:root{--dark:#14532d;--dark2:#166534;--dark3:#1b7a43;--accent:#ea580c;--accent-dark:#c2410c;--bg:#f2f7f3;--card:#fff;--text:#14261a;--muted:#5b6b60;--border:#d7e2d9;--result-bg:#fff7ed;--row-alt:#f6faf6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:var(--accent-dark)}
+header{background:var(--dark);color:#fff;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.header-in{display:flex;align-items:center;gap:14px;padding:13px 16px;max-width:1080px;margin:0 auto;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;flex:1;min-width:200px}
+.brand .mark{width:38px;height:38px;border-radius:9px;background:var(--accent);color:var(--dark);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:19px;flex:none}
+.brand b{font-size:19px;letter-spacing:.2px}
+.brand b span{color:var(--accent)}
+.brand small{display:block;font-size:11.5px;color:#cbd5c1;font-weight:400}
+nav.main-nav{display:flex;gap:4px;flex-wrap:wrap}
+nav.main-nav a{color:#dbe7db;text-decoration:none;font-size:14px;font-weight:600;padding:8px 11px;border-radius:8px}
+nav.main-nav a:hover{background:var(--dark2);color:#fff}
+.hero{background:linear-gradient(135deg,var(--dark) 0%,var(--dark2) 60%,var(--dark3) 100%);color:#fff;padding:44px 0 40px}
+.hero h1{font-size:clamp(26px,5vw,40px);line-height:1.2;max-width:760px}
+.hero h1 span{color:var(--accent)}
+.hero p{color:#d7e3d7;font-size:16px;max-width:720px;margin-top:12px}
+.hero .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.hero .badge{background:rgba(255,255,255,.08);border:1px solid var(--accent);color:#ffe9c9;font-size:13px;font-weight:600;border-radius:999px;padding:6px 13px}
+section{padding:34px 0 8px}
+section h2{font-size:24px;margin-bottom:6px}
+.section-sub{color:var(--muted);font-size:15px;max-width:760px;margin-bottom:20px}
+.calc-grid{display:grid;grid-template-columns:1fr;gap:18px}
+@media(min-width:860px){.calc-grid{grid-template-columns:1fr 1fr}.calc-grid .wide{grid-column:1 / -1}}
+.card{background:var(--card);border-radius:14px;box-shadow:0 1px 3px rgba(0,0,0,.08),0 4px 14px rgba(0,0,0,.06);padding:22px 20px;border-top:4px solid var(--accent)}
+.card h3{font-size:18px;margin-bottom:2px}
+.card .tag{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-dark)}
+.card .desc{font-size:14px;color:var(--muted);margin:6px 0 16px}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:13.5px;font-weight:600;margin-bottom:6px}
+.field label small{font-weight:400;color:var(--muted)}
+.field input,.field select{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:10px;font-size:15px;font-family:inherit;outline:none;background:#fff;color:var(--text)}
+.field input:focus,.field select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,0,0,.08)}
+.btn{display:inline-block;background:var(--accent);color:#fff;border:none;border-radius:10px;padding:12px 20px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit}
+.btn:hover{filter:brightness(1.08)}
+.result{margin-top:16px;background:var(--result-bg);border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:none}
+.result.show{display:block}
+.result .big{font-size:26px;font-weight:800;color:var(--dark)}
+.result p{font-size:14.5px;margin-top:4px}
+.result .note{font-size:13px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;font-size:14.5px;margin:14px 0}
+th,td{border:1px solid var(--border);padding:10px 12px;text-align:left;vertical-align:top}
+th{background:var(--dark);color:#fff}
+tr:nth-child(even) td{background:var(--row-alt)}
+.guide-grid{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:760px){.guide-grid{grid-template-columns:1fr 1fr 1fr}}
+.guide-card{background:var(--card);border-radius:14px;box-shadow:0 1px 3px rgba(0,0,0,.08),0 4px 14px rgba(0,0,0,.06);padding:20px;display:flex;flex-direction:column}
+.guide-card h3{font-size:17px;margin-bottom:8px}
+.guide-card p{font-size:14px;color:var(--muted);flex:1}
+.guide-card a{margin-top:12px;font-weight:700;text-decoration:none}
+.faq-item{background:var(--card);border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.06);padding:16px 18px;margin-bottom:12px}
+.faq-item h3{font-size:16px;margin-bottom:6px}
+.faq-item p{font-size:14.5px;color:var(--muted)}
+footer{background:var(--dark);color:#cbd5c1;margin-top:44px;padding:34px 0 26px;font-size:14px}
+footer h3{color:#fff;font-size:16px;margin-bottom:8px}
+footer p{margin-bottom:10px;max-width:820px}
+footer a{color:var(--accent)}
+.article{max-width:860px}
+.article h1{font-size:clamp(26px,4vw,34px);line-height:1.25;margin:26px 0 10px}
+.article .lede{font-size:17px;color:var(--muted);margin-bottom:18px}
+.article h2{font-size:22px;margin:26px 0 8px}
+.article h3{font-size:18px;margin:20px 0 6px}
+.article p{margin-bottom:12px}
+.article ul,.article ol{margin:0 0 14px 22px}
+.article li{margin-bottom:6px}
+.back{margin:22px 0 0;display:inline-block;font-weight:700;text-decoration:none}
+@media(max-width:640px){.brand small{display:none}.hero{padding:30px 0}}
+
+</style>
+</head>
+<body>
+<header><div class="header-in">
+<a class="brand" href="../"><span class="mark">⛽</span><span><b>Gas Station <span>Nearby</span></b><small>Find cheap gas near you — fuel cost calculators and guides</small></span></a>
+<nav class="main-nav"><a href="../#calculators">Calculators</a><a href="../#fuel-table">Fuel Grades</a><a href="../#guides">Guides</a><a href="../#faq">FAQ</a></nav>
+</div></header>
+<main class="wrap article">
+<a class="back" href="../">&larr; Back to home</a>
+<h1>How to Find the Cheapest Gas Near You</h1>
+<p class="lede">Gas prices can differ by 50 cents a gallon or more between two stations a few minutes apart. Knowing where — and when — to fill up can save a typical driver several hundred dollars a year.</p>
+<h2>Start with a gas price app</h2><p>The fastest way to find cheap gas is a price-comparison app. Drivers report prices at stations near them, and the app shows a map of the cheapest options. Before you drive somewhere special for cheap gas, check the distance: driving 10 extra miles to save 10 cents a gallon usually costs more than it saves.</p><h2>Look away from the highway</h2><p>Stations right off a highway exit pay high rent and serve drivers who have no choice — so they charge more. Stations a mile or two into town, near supermarkets, or on the outskirts are often much cheaper. If you can, fill up before you get on the highway, not at the first exit.</p><h2>Time your fill-ups</h2><p>Prices often rise before weekends and holidays, when more people travel. Filling up on a Monday or Tuesday morning is often cheaper than Friday afternoon. Prices also tend to change early in the morning, so an early fill-up can catch the lower price.</p><h2>Use loyalty programs and warehouse clubs</h2><p>Most major chains offer a free loyalty card or app that knocks a few cents off per gallon. Warehouse clubs and some supermarkets offer bigger discounts — sometimes 20 to 30 cents a gallon — if you are already a member. Stack a loyalty discount with a cashback credit card for a double saving.</p><h2>Pay attention to cash vs. card prices</h2><p>Some stations charge more for credit cards than for cash. The difference is often 5 to 10 cents a gallon. If you carry cash, the cash price can be the cheapest option at that station.</p><h2>Keep a simple price log</h2><p>Note the price at the two or three stations you pass most often. Within a week you will know which one is usually cheapest, and you will spot price jumps quickly. Combine this habit with the calculator on our home page to see exactly what a trip costs before you leave.</p><h2>What not to do</h2><ul><li>Do not drive far out of your way for a small saving — the fuel you burn cancels it out.</li><li>Do not let your tank run nearly empty while hunting for a deal; running out of gas is far more expensive than a few cents a gallon.</li><li>Do not trust a price sign that is not dated — always check the pump price before you start filling.</li></ul>
+<p><a class="back" href="../">&larr; Back to home</a></p>
+</main>
+<footer><div class="wrap">
+<h3>About Gas Station Nearby</h3>
+<p>Gas Station Nearby is an independent, free resource for drivers in the United States. We publish fuel cost calculators and plain-English guides to help you spend less at the pump. We are not affiliated with any fuel brand, gas station chain, or oil company, and we do not sell fuel or collect your data.</p>
+<h3>Disclaimer</h3>
+<p>Fuel prices shown on this site are estimates for reference only and change daily by location. Always check the posted price at the pump before filling up. Calculator results are estimates based on the numbers you enter; your real fuel use depends on your vehicle, driving style, traffic, and weather.</p>
+<p>Guides: <a href="../guides/cheapest-gas-near-you.html">How to Find the Cheapest Gas Near You</a> &middot; <a href="../guides/gas-station-amenities.html">Gas Station Amenities Explained</a> &middot; <a href="../guides/save-money-on-gas.html">10 Ways to Save Money on Gas</a> &middot; <a href="../guides/diesel-vs-gasoline.html">Diesel vs Gasoline — What to Know</a> &middot; <a href="../guides/ev-charging-at-gas-stations.html">EV Charging at Gas Stations: What to Expect</a> &middot; <a href="../guides/gas-station-safety-night.html">Gas Station Safety Tips for Night Stops</a></p>
+<p>&copy; 2026 Gas Station Nearby. All prices are estimates. Drive safe.</p>
+</div></footer>
+</body>
+</html>
